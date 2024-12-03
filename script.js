@@ -1,6 +1,6 @@
 const messages = [
   "👋 Hi...",
-  "🎉 Welcome to my GitHub page",
+  "🌍 Welcome to my GitHub page",
   "💻 Me is Junior Java Developer",
 ];
 
