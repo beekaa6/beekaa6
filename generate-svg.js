@@ -1,18 +1,19 @@
-const fs = require("fs");
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
+import fs from "fs";
 
 // Fetch repositories
 async function fetchRepositories() {
-  const response = await fetch("https://api.github.com/users/beekaa6/repos");
+  const response = await fetch("https://api.github.com/users/YOUR_USERNAME/repos");
   const repos = await response.json();
 
-  return repos.map((repo, index) => ({
+  return repos.map((repo) => ({
     name: repo.name,
-    x: Math.random() * 800,
-    y: Math.random() * 400,
+    x: Math.random() * 800, // Random X position
+    y: Math.random() * 400, // Random Y position
   }));
 }
 
+// Generate SVG
 async function generateSVG() {
   const stars = await fetchRepositories();
 
@@ -33,8 +34,8 @@ async function generateSVG() {
   });
 
   svgContent += `</svg>`;
-
   fs.writeFileSync("stargazer.svg", svgContent);
+  console.log("SVG generated successfully!");
 }
 
 generateSVG();
