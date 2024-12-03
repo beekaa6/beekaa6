@@ -25,11 +25,11 @@ printMessages();
 
 async function findGeo() {
   try {
-    const response = await fetch("http://ip-api.com/json/?fields=61439");
+    const response = await fetch("https://ipapi.co/json/");
     const result = await response.json();
     //console.log(result);
 
-    findWeather(result.lat, result.lon, result.city, result.country);
+    findWeather(result.latitude, result.longitude, result.city, result.country_name);
   } catch (error) {
     console.log("Error");
   }
