@@ -1,5 +1,8 @@
 ## Hi there 👋
 
+<img src="https://readme-typing-svg.demolab.com/demo/?duration=2000&multiline=true&lines=Hi...;Welcome+to+My+GitHub+Profile;I+am+a+Junior+Java+Web+Developer;heh" alt="Typing SVG">
+
+
 <!--
 **beekaa6/beekaa6** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
