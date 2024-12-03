@@ -3,7 +3,7 @@ name: Generate Clock SVG
 on:
   schedule: # Execute every 12 hours
     - cron: "0 */12 * * *"
-  workflow_dispatch: # Allow manual execution
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -16,23 +16,20 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      # Step 1: Check out the repository
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js environment
       - name: Set Up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "16"
 
-      # Step 3: Generate Clock SVG
-      - name: Generate clock.svg
-        run: |
-          npm install node-fetch # Install fetch if needed
-          node generate-clock.js # Run your clock generation script
+      - name: Install Dependencies
+        run: npm install node-fetch
 
-      # Step 4: Push clock.svg to the output branch
+      - name: Generate clock.svg
+        run: node ./src/generate-clock.js
+
       - name: Push clock.svg to output branch
         uses: crazy-max/ghaction-github-pages@v3.1.0
         with:
