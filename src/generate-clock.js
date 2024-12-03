@@ -1,6 +1,7 @@
 const fs = require("fs");
+const path = require("path");
 
-function generateClockSVG() {
+function generateClockSVG(outputPath) {
   const now = new Date();
   const hours = now.getUTCHours();
   const minutes = now.getUTCMinutes();
@@ -15,7 +16,9 @@ function generateClockSVG() {
     </svg>
   `;
 
-  fs.writeFileSync("clock.svg", svg);
+  fs.writeFileSync(path.resolve(outputPath), svg);
 }
 
-generateClockSVG();
+// Take output path from command-line argument
+const outputPath = process.argv[2] || "clock.svg";
+generateClockSVG(outputPath);
