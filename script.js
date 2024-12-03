@@ -23,7 +23,6 @@ function updateMessage() {
 
 const messageInterval = setInterval(updateMessage, 2000);
 
-
 async function findGeo() {
   try {
     const response = await fetch("http://ip-api.com/json/?fields=61439");
@@ -50,8 +49,11 @@ async function findWeather(latitude, longitude, city, country) {
   }
 }
 
-
-
-
 updateMessage();
 findGeo();
+
+const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const current = new Date();
+const today = weekDays[current.getDay()];
+
+messages[4] = `Today is ${today}. Have a good day ya.`;
