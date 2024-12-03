@@ -1,27 +1,27 @@
 const messages = [
-  "Hi...",
-  "Welcome to my GitHub page",
-  "I am a Junior Java Web Developer",
-  "Today's weather...",
+  "👋 Hi...",
+  "🎉 Welcome to my GitHub page",
+  "💻 Me is Junior Java Developer",
 ];
 
-const message = document.getElementById("message");
+async function printMessages() {
+  await findGeo();
 
-let messageIndex = 0;
+  let index = 0;
+  const textElement = document.getElementById("msg");
 
-function updateMessage() {
-  if (messageIndex < messages.length) {
-    message.textContent = messages[messageIndex];
-    messageIndex++;
-  } //else if (messageIndex === messages.length) {
-   // messageIndex = 0;
-  //} 
-  else {
-    clearInterval(messageInterval);
+  function updateMessage() {
+    if (index < messages.length) {
+      textElement.textContent = messages[index];
+      index++;
+      setTimeout(updateMessage, 3000);
+    }
   }
+
+  updateMessage();
 }
 
-const messageInterval = setInterval(updateMessage, 2000);
+printMessages();
 
 async function findGeo() {
   try {
@@ -42,18 +42,25 @@ async function findWeather(latitude, longitude, city, country) {
 
     //console.log(result);
     const temperature = result.current_weather.temperature;
+    let tempIcon = "";
+
+    if (temperature < 10) {
+      tempIcon = "🥶";
+    } else if (temperature >= 10 && temperature <= 25) {
+      tempIcon = "🌤️";
+    } else {
+      tempIcon = "🔥";
+    }
     
-    messages[3] = `Weather in ${city}, ${country}: ${temperature}°C`;
+    messages[3] = `${tempIcon} Weather in ${city}, ${country}: ${temperature}°C`;
   } catch (error) {
-    messages[3] = "Nice weather u have there...";
+    messages[3] = "🌦️ Nice weather u have there...";
   }
 }
 
-updateMessage();
-findGeo();
 
 const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const current = new Date();
 const today = weekDays[current.getDay()];
 
-messages[4] = `Today is ${today}. Have a good day ya.`;
+messages[4] = `📅 Today is ${today}. Have a good day ya.`;
